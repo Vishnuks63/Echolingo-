@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Echolingo - Select Language</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-image: url('./image.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+        }
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .language-box {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .language-box:hover {
+            transform: scale(1.05);
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Echolingo</h1>
+        <p>Select a language to start learning</p>
+        <div class="language-grid">
+            <div class="language-box" onclick="selectLanguage('hindi')">Hindi</div>
+            <div class="language-box" onclick="selectLanguage('tamil')">Tamil</div>
+            <div class="language-box" onclick="selectLanguage('telugu')">Telugu</div>
+            <div class="language-box" onclick="selectLanguage('marathi')">Marathi</div>
+            <div class="language-box" onclick="selectLanguage('bengali')">Bengali</div>
+        </div>
+    </div>
+    <script>
+        function selectLanguage(language) {
+            // First check if user is logged in
+            const user = localStorage.getItem('user');
+            if (!user) {
+                window.location.href = '/static/login.html';
+                return;
+            }
+            window.location.href = `/static/quiz.html?language=${language}`;
+        }
+    </script>
+</body>
+</html>
